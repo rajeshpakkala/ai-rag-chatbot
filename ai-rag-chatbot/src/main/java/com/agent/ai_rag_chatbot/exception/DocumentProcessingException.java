@@ -1,0 +1,17 @@
+package com.agent.ai_rag_chatbot.exception;
+
+
+public class DocumentProcessingException
+        extends RuntimeException {
+
+    public DocumentProcessingException(String message) {
+        super(message);
+    }
+
+    public DocumentProcessingException(
+            String message,
+            Throwable cause) {
+
+        super(message, cause);
+    }
+}
