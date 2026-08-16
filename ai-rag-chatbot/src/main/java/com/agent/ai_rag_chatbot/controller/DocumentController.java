@@ -1,6 +1,7 @@
 package com.agent.ai_rag_chatbot.controller;
 
 import com.agent.ai_rag_chatbot.dto.DocumentUploadResponse;
+import com.agent.ai_rag_chatbot.service.IngestionService;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
