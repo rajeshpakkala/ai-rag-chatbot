@@ -41,6 +41,11 @@ app:
   security:
     upload-username: admin
     upload-password: admin123
+  cors:
+    allowed-origins:
+      - http://localhost:3000
+      - https://frontend-ai-rag-chatbot.vercel.app
+      - ${CORS_ALLOWED_ORIGIN:}
 
 server:
   port: 8080
