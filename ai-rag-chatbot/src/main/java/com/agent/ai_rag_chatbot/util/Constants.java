@@ -7,7 +7,7 @@ public final class Constants {
 
     public static final class Rag {
 
-        public static final double DEFAULT_SIMILARITY_THRESHOLD = 0.5;
+        public static final double DEFAULT_SIMILARITY_THRESHOLD = 0.25;
 
         private Rag() {
         }
