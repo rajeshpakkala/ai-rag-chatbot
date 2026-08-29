@@ -9,5 +9,4 @@ public class AiRagChatbotApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AiRagChatbotApplication.class, args);
 	}
-
 }
