@@ -1,16 +1,11 @@
 spring:
-
   application:
     name: ai-rag-chatbot
 
-#  datasource:
-#    url: jdbc:postgresql://localhost:5433/ragdb
-#    username: raguser
-#    password: ragpassword
-    datasource:
-      url: ${DB_URL}
-      username: ${DB_USERNAME}
-      password: ${DB_PASSWORD}
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
 
   jpa:
     hibernate:
@@ -21,14 +16,11 @@ spring:
         format_sql: true
 
   ai:
-
     openai:
       api-key: ${OPENAI_API_KEY}
-
       chat:
         model: gpt-4o-mini
         temperature: 0.0
-
       embedding:
         options:
           model: text-embedding-3-small
@@ -41,15 +33,5 @@ spring:
         dimensions: 1536
         max-document-batch-size: 1000
 
-app:
-  security:
-    upload-username: admin
-    upload-password: admin123
-  cors:
-    allowed-origins:
-      - http://localhost:3000
-      - https://frontend-ai-rag-chatbot.vercel.app
-      - ${CORS_ALLOWED_ORIGIN:}
-
 server:
-  port: 8080
+  port: ${PORT:8080}
