@@ -3,9 +3,9 @@ spring:
     name: ai-rag-chatbot
 
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: ${DB_URL:jdbc:postgresql://localhost:5433/ragdb}
+    username: ${DB_USERNAME:raguser}
+    password: ${DB_PASSWORD:ragpassword}
 
   jpa:
     hibernate:
@@ -32,6 +32,16 @@ spring:
         distance-type: COSINE_DISTANCE
         dimensions: 1536
         max-document-batch-size: 1000
+
+app:
+  security:
+    upload-username: ${UPLOAD_USERNAME:admin}
+    upload-password: ${UPLOAD_PASSWORD:admin123}
+  cors:
+    allowed-origins:
+      - http://localhost:3000
+      - https://frontend-ai-rag-chatbot.vercel.app
+      - ${CORS_ALLOWED_ORIGIN:}
 
 server:
   port: ${PORT:8080}
