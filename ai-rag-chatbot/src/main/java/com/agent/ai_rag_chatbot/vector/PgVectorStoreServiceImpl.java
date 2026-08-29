@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -73,7 +74,7 @@ public class PgVectorStoreServiceImpl implements VectorStoreService {
         }
 
         return Document.builder()
-                .id(chunk.getChunkId())
+                .id(UUID.randomUUID().toString())
                 .text(chunk.getContent())
                 .metadata(metadata)
                 .build();

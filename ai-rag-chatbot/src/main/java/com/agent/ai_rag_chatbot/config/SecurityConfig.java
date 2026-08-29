@@ -4,8 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.bind.Bindable;
+import org.springframework.boot.context.properties.bind.Binder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -59,7 +62,14 @@ public class SecurityConfig {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource(
-            @Value("${app.cors.allowed-origins}") List<String> allowedOrigins) {
+            Environment environment) {
+
+        List<String> allowedOrigins = Binder.get(environment)
+                .bind("app.cors.allowed-origins", Bindable.listOf(String.class))
+                .orElse(List.of())
+                .stream()
+                .filter(origin -> !origin.isBlank())
+                .toList();
 
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(allowedOrigins);
@@ -94,8 +104,9 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationEntryPoint authenticationEntryPoint(
-            ObjectMapper objectMapper) {
+    public AuthenticationEntryPoint authenticationEntryPoint() {
+
+        ObjectMapper objectMapper = new ObjectMapper();
 
         return (HttpServletRequest request,
                 HttpServletResponse response,

@@ -68,6 +68,30 @@ public class GlobalExceptionHandler {
                 .body(response);
     }
 
+    @ExceptionHandler(DocumentAlreadyExistsException.class)
+    public ResponseEntity<ApiErrorResponse>
+    handleDocumentAlreadyExists(
+            DocumentAlreadyExistsException exception) {
+
+        log.warn(
+                "Duplicate document upload rejected: {}",
+                exception.getMessage()
+        );
+
+        ApiErrorResponse response =
+                new ApiErrorResponse(
+                        LocalDateTime.now(),
+                        HttpStatus.CONFLICT.value(),
+                        "DOCUMENT_ALREADY_EXISTS",
+                        exception.getMessage(),
+                        List.of()
+                );
+
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(response);
+    }
+
     @ExceptionHandler(RagException.class)
     public ResponseEntity<ApiErrorResponse>
     handleRagException(

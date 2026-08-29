@@ -4,7 +4,7 @@ spring:
     name: ai-rag-chatbot
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/ragdb
+    url: jdbc:postgresql://localhost:5433/ragdb
     username: raguser
     password: ragpassword
 
