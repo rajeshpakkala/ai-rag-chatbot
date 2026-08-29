@@ -3,10 +3,14 @@ spring:
   application:
     name: ai-rag-chatbot
 
-  datasource:
-    url: jdbc:postgresql://localhost:5433/ragdb
-    username: raguser
-    password: ragpassword
+#  datasource:
+#    url: jdbc:postgresql://localhost:5433/ragdb
+#    username: raguser
+#    password: ragpassword
+    datasource:
+      url: ${DB_URL}
+      username: ${DB_USERNAME}
+      password: ${DB_PASSWORD}
 
   jpa:
     hibernate:
